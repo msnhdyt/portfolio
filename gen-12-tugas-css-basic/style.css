@@ -1,0 +1,51 @@
+header h1{
+  display: inline-block;
+}
+
+h1:nth-child(2){
+  margin-left: 40px;
+}
+
+p span {
+  margin-left: 30px;
+}
+
+table {
+  width: 100%;
+  /* margin: 0 auto; */
+  border-collapse: collapse;
+
+}
+
+td, th {
+  width: 200px;
+  height: 30px;
+  text-align: center;
+}
+th {
+  background-color: #5b5b5b;
+  color: white;
+}
+td {
+  border: 1px solid white;
+}
+
+tr:nth-child(odd){
+  background-color: #e6e4df;
+}
+
+tr:nth-child(even){
+  background-color: #b3b8b7;
+}
+
+.bisnis{
+  background-color: #cbf9b3;
+}
+
+.fisika{
+  background-color: #f9d3b3;
+}
+
+.matem{
+  background-color: #b3d9f9;
+}
