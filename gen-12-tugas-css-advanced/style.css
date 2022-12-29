@@ -106,6 +106,7 @@ input:focus {
   cursor: pointer;
   text-decoration: underline;
   font-weight: bold;
+  color: black;
 }
 
 .containter-card {
@@ -164,4 +165,8 @@ figcaption {
 
 article p {
   text-align: justify;
+}
+
+p, a, li {
+  color: gray;
 }
