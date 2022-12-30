@@ -3,7 +3,7 @@
 }
 
 body {
-  padding: 100px;
+  padding: 200px;
   padding-top: 10px;
   font-family: sans-serif;
 }
@@ -19,13 +19,17 @@ header a{
 
 header div {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-left: 10px;
 }
 
 #logo {
   width: 50px;
-  position: absolute;
+  /* position: absolute; */
+}
+
+#login-signup{
+  margin-left: auto;
 }
 
 #login-signup a{
@@ -66,7 +70,10 @@ main div {
 }
 
 .container-title p {
-  margin: auto 0;
+  flex-basis: 25%;
+  margin-left: auto;
+  margin-right: 50px;
+  text-align: justify;
 }
 
 form {
