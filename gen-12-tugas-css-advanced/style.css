@@ -105,15 +105,64 @@ input:focus {
   border: 1px solid black;
 }
 
-.nav-bottom li{
-  padding: 5px 10px;
+.nav-bottom {
+  display: flex;
+  justify-content: space-around;
 }
 
-.nav-bottom li:hover{
+.nav-bottom div {
+  /* border: 1px solid black; */
+  margin: 0;
+}
+
+.nav-bottom li{
+  /* padding: 5px 10px; */
+  padding-left: 10%;
+}
+
+.nav-bottom .line {
+  display: inline-block;
+  width: 100%;
+  height: 0px;
+  border: 1px solid black;
+  padding: 0 10px;
+  margin: 0 auto;
+  /* display: none; */
+  visibility: hidden;
+  /* margin-left: -5px; */
+}
+
+.nav-bottom div:hover {
+  cursor: pointer;
+}
+
+.nav-bottom div:hover .line {
+  visibility: visible;
+}
+
+.nav-bottom div:hover li {
+  font-weight: bold;
+  color: black;
+}
+
+/* .nav-bottom li:hover{
   cursor: pointer;
   text-decoration: underline;
   font-weight: bold;
   color: black;
+} */
+
+.nav-bottom-container {
+  position: relative;
+}
+
+hr {
+  position: absolute;
+  border: 1px solid gray;
+  width: 99%;
+  bottom: -4px;
+  z-index: -1;
+  margin-left: 4px;
 }
 
 .containter-card {
