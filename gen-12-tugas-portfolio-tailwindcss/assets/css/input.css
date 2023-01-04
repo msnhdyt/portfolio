@@ -6,4 +6,10 @@
 	.menu {
     visibility: visible;
 	}
+
+	.menu-2 {
+		/* position: static; */
+		visibility: visible;
+		background-color: #002733;
+	}
 }
