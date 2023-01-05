@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas Object</title>
+  </head>
+  <body>
+    <!-- buatlah sebuah object dengan ketentuan sebagai berikut:
+- memiliki property yang punya tipedata:
+    - string v
+    - number v 
+    - array v
+    - object v
+    - array of object v
+- memiliki function yang dibuat menggunakan:
+    - anonymous function v
+    - arrow function v
+    - regular function v
+    - referenced function v
+- salah satu dari function harus menggunakan "this"  v
+- array of objectnya bisa ditambah isinya melalui sebuah method v -->
+
+    <script>
+      function makanFunc() {
+        return 'lagi makan'
+      }
+
+      const mahasiswa = {
+        firstName: 'John',
+        lastName: 'No',
+        jurusan: 'Matematika',
+        ipk: 4.0,
+        informasiBadan: {
+          tinggi: 200,
+          berat: 60
+        },
+        koleksiBuku: ['Kalkulus', 'Aljabar'],
+        matkulYgDiambil: [
+          {
+            kode: 'abc1',
+            nama: 'kalkulus',
+            dosen: 'Pak dosen'
+          },
+          {
+            kode: 'abc2',
+            nama: 'aljabar',
+            dosen: 'Ibu dosen'
+          }
+        ],
+        fullName: function () {
+          return this.firstName + ' ' + this.lastName
+        },
+        belajar: () => {
+          return 'lagi belajar'
+        },
+        makan: makanFunc,
+        minum() {
+          return 'lagi minum'
+        },
+        addMatkul(obj) {
+          this.matkulYgDiambil.push(obj)
+        }
+      }
+      console.log(mahasiswa.matkulYgDiambil)
+      console.log(mahasiswa.matkulYgDiambil.length)
+      console.log(mahasiswa.belajar())
+      console.log(mahasiswa.fullName())
+      console.log(mahasiswa.makan())
+      console.log(mahasiswa.minum())
+      const metnum = {
+        kode: 'abc3',
+        nama: 'metnum',
+        dosen: 'pak dosen2'
+      }
+      mahasiswa.addMatkul(metnum)
+      console.log(mahasiswa.matkulYgDiambil)
+      console.log(mahasiswa.matkulYgDiambil.length)
+    </script>
+  </body>
+</html>
