@@ -73,7 +73,7 @@ const removeElementProduct = function (element) {
 const calculateTotal = () => {
   const containerProduct = $('#product-form').children()
   let total = 0
-  const productChoosen = []
+  const chosenProduct = []
   
   for (const iterator of containerProduct) {
     // console.log($(iterator).children('select').val())
@@ -82,13 +82,13 @@ const calculateTotal = () => {
     products.forEach(element => {
       if(id == element.id){
         total += element.price*qty
-        productChoosen.push({...element, quantity: qty})
+        chosenProduct.push({...element, quantity: qty})
       }
     });
   }
   $('#total').text(`Total: Rp${total}`)
   const result = {
-    products: productChoosen,
+    products: chosenProduct,
     total: total
   }
   return result
@@ -100,7 +100,7 @@ $(document).ready(function () {
   $('select').css('width', '50%').select2()
 
   customers.forEach(element => {
-    $('#cust-select').append(`<option value="${element.id}">${element.name}</option>`)
+    $('#cust-select').append(`<option value="${element.id}">${element.id} - ${element.name}</option>`)
   })
   products.forEach((element) => {
     $('.product').append(`<option value="${element.id}">${element.name} - ${element.price}</option>`)
@@ -114,7 +114,6 @@ $(document).ready(function () {
   $('#existing-cust').change(function () {
     $('#existing-cust-form').show()
     $('#new-cust-form').hide()
-    $('#cust-select').append(`<option value="${customers[customers.length-1].id}">${customers[customers.length-1].name}</option>`)
   })
 
   $('.add-btn').click(() => {
@@ -125,14 +124,13 @@ $(document).ready(function () {
   })
 
   $('#submit-btn').click(()=>{
-    // console.log(calculateTotal())
     const newCust = $('#new-cust:checked')
     const existCust = $('#existing-cust:checked')
     
     
     if(newCust.val()){
       const cust = {
-        id: customers.length,
+        id: customers.length + 1,
         name: $('#cust-name').val(),
         contact: $('#cust-contact').val()
       }
@@ -143,6 +141,7 @@ $(document).ready(function () {
       }
       customers.push(cust)
       console.log(obj)
+      $('#cust-select').append(`<option value="${cust.id}">${cust.id} - ${cust.name}</option>`)
     } else if(existCust.val()){
       const id = $('#cust-select').val()
       let cust
