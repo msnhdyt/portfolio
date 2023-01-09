@@ -48,7 +48,7 @@ const addElementProduct = () => {
     ${productStr}
   </select>
   <label for="qty">Quantity</label>
-  <input type="number" name="qty" class="qty" value="1"/>
+  <input type="number" name="qty" class="qty" value="1" min="1"/>
   <button type="button" class="add-btn">+</button>
   <button type="button" class="remove-btn">-</button>
 `
