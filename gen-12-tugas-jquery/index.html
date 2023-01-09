@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas JQuery</title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+      /* .existing-cust-form,
+      .new-cust-form {
+        display: none;
+      } */
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      form div {
+        /* display: flex;
+        flex-direction: column; */
+        margin-bottom: 10px;
+      }
+      #cust-type {
+        display: block;
+      }
+      #existing-cust-form {
+        display: none;
+      }
+      #product-form {
+        flex-direction: row;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+      products = [
+        {
+          id: 1,
+          name: 'pensil',
+          price: 1000
+        },
+        {
+          id: 2,
+          name: 'buku',
+          price: 2000
+        },
+        {
+          id: 3,
+          name: 'pulpen',
+          price: 5000
+        },
+        {
+          id: 4,
+          name: 'penggaris',
+          price: 3000
+        }
+      ]
+
+      const addElementProduct = () => {
+        const div = document.createElement('div')
+        div.setAttribute('class', 'product-container')
+        let productStr = ''
+        products.forEach((element) => {
+          productStr += `<option value="${element.id}">${element.name} - ${element.price}</option>`
+        })
+        div.innerHTML = `
+          <label for="product">Pilih Produk</label>
+          <select name="product" id="product">
+            ${productStr}
+          </select>
+          <label for="qty">Quantity</label>
+          <input type="number" name="qty" id="qty" />
+          <button type="button" onclick="addElementProduct()" id="add-btn">+</button>
+          <button type="button" onclick="removeElementProduct()" id="remove-btn">-</button>
+        `
+        $('#product-form').append(div)
+      }
+
+      const removeElementProduct = function () {
+        $('#product-form div:last-child').remove()
+        // console.log(element)
+      }
+
+      const calculateTotal = () => {
+        console.log($('select').val())
+      }
+
+      $(document).ready(function () {
+        // $('.existing-cust-form').hide()
+        $('select').css('width', '50%').select2()
+        products.forEach((element) => {
+          $('#product').append(`<option value="${element.id}">${element.name} - ${element.price}</option>`)
+        })
+
+        $('#new-cust').change(function () {
+          $('#new-cust-form').show()
+          $('#existing-cust-form').hide()
+        })
+
+        $('#existing-cust').change(function () {
+          $('#existing-cust-form').show()
+          $('#new-cust-form').hide()
+        })
+
+        $('#add-btn').click(() => {
+          addElementProduct()
+        })
+        $('#remove-btn').click(removeElementProduct)
+      })
+    </script>
+  </head>
+  <body>
+    <form>
+      <div id="cust-type">
+        <h4>Jenis Pelanggan</h4>
+        <input type="radio" id="new-cust" name="cust" checked />
+        <label for="new-cust">Pelanggan baru</label>
+        <input type="radio" id="existing-cust" name="cust" />
+        <label for="existing-cust">Pelanggan lama</label>
+      </div>
+      <div id="new-cust-form">
+        <h4>Pelanggan Baru</h4>
+        <label for="cust-name">Nama Pelanggan</label>
+        <input type="text" id="cust-name" />
+        <label for="cust-contact">Kontak</label>
+        <input type="text" id="cust-contact" />
+      </div>
+      <div id="existing-cust-form" hidden>
+        <h4>Pelanggan Lama</h4>
+        <label for="cust-select">Pilih Pelanggan</label>
+        <select name="cust-select" id="cust-select">
+          <option>user1</option>
+          <option>user2</option>
+        </select>
+      </div>
+      <div id="product-form">
+        <div class="product-container">
+          <label for="product">Pilih Produk</label>
+          <select name="product" id="product"></select>
+          <label for="qty">Quantity</label>
+          <input type="number" name="qty" id="qty" />
+          <button type="button" id="add-btn">+</button>
+          <button type="button" id="remove-btn">-</button>
+        </div>
+      </div>
+      <div id="total"></div>
+    </form>
+  </body>
+</html>
