@@ -68,15 +68,15 @@
       }
       function App() {
         const [title, setTitle] = React.useState('Informasi Sepak bola')
-        const changeTitle = (newTitle) => {
-          setTitle(newTitle)
-          alert('Title berubah')
-        }
+        // const changeTitle = (newTitle) => {
+        //   setTitle(newTitle)
+        //   alert('Title berubah')
+        // }
         return (
           <>
             <h1>{title}</h1>
-            <Title changeTitle={changeTitle} />
-            <Club nama="MU" berdiri="1978" stadion="Old Trafford" />
+            <Title changeTitle={setTitle} />
+            <Club nama="Manchester United" berdiri="1978" stadion="Old Trafford" />
             <Liga nama="Liga Inggris" asal="Inggris" />
             <Federasi nama="PSSI" asal="Indonesia" />
           </>
