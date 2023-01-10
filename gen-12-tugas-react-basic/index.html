@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- # TUGAS
+
+- buatlah 3 component diluar component utama
+- setiap component memiliki minimal 1 state dan minimal 1 props
+- coba ubah state component utama dari component anaknya. hint (reference, callback, children to parent) -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function Club(props) {
+        const [linkLogo, setLinkLogo] = React.useState(
+          'https://cdn0-production-images-kly.akamaized.net/8u044hvhRLdrliMTExBjp24--Uc=/1200x1200/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3258311/original/005746300_1601894161-logo_mu.jpg'
+        )
+        return (
+          <>
+            <div>
+              <h2>Nama Club: {props.nama}</h2>
+              <p>Tahun Berdiri: {props.berdiri}</p>
+              <p>Stadion: {props.stadion}</p>
+              <img src={linkLogo} alt="" width="100px" />
+              <button onClick={() => setLinkLogo('https://images.tokopedia.net/img/cache/700/product-1/2018/9/4/8199625/8199625_5e539afc-a0bb-49e2-915a-3e5f7140d836_800_800.png')}>Ganti logo</button>
+            </div>
+          </>
+        )
+      }
+      function Liga(props) {
+        const [linkLogo, setLinkLogo] = React.useState('https://upload.wikimedia.org/wikipedia/id/thumb/f/f2/Premier_League_Logo.svg/1200px-Premier_League_Logo.svg.png')
+        return (
+          <>
+            <div>
+              <h2>Nama Liga: {props.nama}</h2>
+              <p>Asal: {props.asal}</p>
+              <img src={linkLogo} alt="" width="100px" />
+              <button onClick={() => setLinkLogo('https://cdn.detik.net.id/sepakbola2/images/liga-inggris.png?v=202301101057')}>Ganti logo</button>
+            </div>
+          </>
+        )
+      }
+      function Federasi(props) {
+        const [linkLogo, setLinkLogo] = React.useState('https://upload.wikimedia.org/wikipedia/id/8/83/Logo_PSSI.png')
+        return (
+          <>
+            <div>
+              <h2>Nama Federasi: {props.nama}</h2>
+              <p>Asal: {props.asal}</p>
+              <img src={linkLogo} alt="" width="100px" />
+              <button onClick={() => setLinkLogo('https://cdn.antaranews.com/cache/800x533/2020/06/27/C3BCEACF-AFEA-47D9-99DF-7A2347680D9B.jpeg')}>Ganti logo</button>
+            </div>
+          </>
+        )
+      }
+      function Title({ changeTitle }) {
+        return (
+          <>
+            <button onClick={() => changeTitle('Informasi Club, Liga dan Federasi Sepak bola')}>Change title</button>
+          </>
+        )
+      }
+      function App() {
+        const [title, setTitle] = React.useState('Informasi Sepak bola')
+        const changeTitle = (newTitle) => {
+          setTitle(newTitle)
+          alert('Title berubah')
+        }
+        return (
+          <>
+            <h1>{title}</h1>
+            <Title changeTitle={changeTitle} />
+            <Club nama="MU" berdiri="1978" stadion="Old Trafford" />
+            <Liga nama="Liga Inggris" asal="Inggris" />
+            <Federasi nama="PSSI" asal="Indonesia" />
+          </>
+        )
+      }
+      const container = document.getElementById('root')
+      const root = ReactDOM.createRoot(container)
+      root.render(<App />)
+    </script>
+  </body>
+</html>
