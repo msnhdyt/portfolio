@@ -77,14 +77,14 @@
         )
       }
       function Federasi(props) {
-        const [linkLogo, setLinkLogo] = React.useState('https://upload.wikimedia.org/wikipedia/id/8/83/Logo_PSSI.png')
+        const [linkLogo, setLinkLogo] = React.useState('https://upload.wikimedia.org/wikipedia/id/thumb/d/d5/FA_crest_2009.svg/1200px-FA_crest_2009.svg.png')
         return (
           <>
             <div>
               <h2>Nama Federasi: {props.nama}</h2>
               <p>Asal: {props.asal}</p>
               <img src={linkLogo} alt="" width="100px" />
-              <button onClick={() => setLinkLogo('https://cdn.antaranews.com/cache/800x533/2020/06/27/C3BCEACF-AFEA-47D9-99DF-7A2347680D9B.jpeg')}>Ganti logo</button>
+              <button onClick={() => setLinkLogo('https://asset.indosport.com/article/image/308530/logo_fa_inggris-169.jpg')}>Ganti logo</button>
             </div>
           </>
         )
@@ -108,7 +108,7 @@
             <Title changeTitle={setTitle} />
             <Club />
             <Liga nama="Liga Inggris" asal="Inggris" />
-            <Federasi nama="PSSI" asal="Indonesia" />
+            <Federasi nama="FA" asal="Inggris" />
           </>
         )
       }
