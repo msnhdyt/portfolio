@@ -17,18 +17,48 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
-      function Club(props) {
-        const [linkLogo, setLinkLogo] = React.useState(
-          'https://cdn0-production-images-kly.akamaized.net/8u044hvhRLdrliMTExBjp24--Uc=/1200x1200/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3258311/original/005746300_1601894161-logo_mu.jpg'
-        )
+      const clubs = [
+        {
+          nama: 'Manchester United',
+          berdiri: 1978,
+          stadion: 'Old Trafford',
+          linkLogo: 'https://cdn0-production-images-kly.akamaized.net/8u044hvhRLdrliMTExBjp24--Uc=/1200x1200/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3258311/original/005746300_1601894161-logo_mu.jpg'
+        },
+        {
+          nama: 'Manchester City',
+          berdiri: 1999,
+          stadion: 'Etihad Stadium',
+          linkLogo: 'https://upload.wikimedia.org/wikipedia/id/thumb/e/eb/Manchester_City_FC_badge.svg/1200px-Manchester_City_FC_badge.svg.png'
+        },
+        {
+          nama: 'Chelsea',
+          berdiri: 1987,
+          stadion: 'Stamford Bridge',
+          linkLogo: 'https://upload.wikimedia.org/wikipedia/id/thumb/c/cc/Chelsea_FC.svg/1200px-Chelsea_FC.svg.png'
+        },
+        {
+          nama: 'Arsenal',
+          berdiri: 1967,
+          stadion: 'Emirates Stadium',
+          linkLogo: 'https://upload.wikimedia.org/wikipedia/id/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png'
+        }
+      ]
+      function Club() {
+        const [index, setIndex] = React.useState(0)
+        // const [linkLogo, setLinkLogo] = React.useState(
+        //   'https://cdn0-production-images-kly.akamaized.net/8u044hvhRLdrliMTExBjp24--Uc=/1200x1200/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3258311/original/005746300_1601894161-logo_mu.jpg'
+        // )
         return (
           <>
             <div>
-              <h2>Nama Club: {props.nama}</h2>
-              <p>Tahun Berdiri: {props.berdiri}</p>
-              <p>Stadion: {props.stadion}</p>
-              <img src={linkLogo} alt="" width="100px" />
-              <button onClick={() => setLinkLogo('https://images.tokopedia.net/img/cache/700/product-1/2018/9/4/8199625/8199625_5e539afc-a0bb-49e2-915a-3e5f7140d836_800_800.png')}>Ganti logo</button>
+              <h2>Nama Club: {clubs[index].nama}</h2>
+              <p>Tahun Berdiri: {clubs[index].berdiri}</p>
+              <p>Stadion: {clubs[index].stadion}</p>
+              <img src={clubs[index].linkLogo} alt="" width="100px" />
+              <p>
+                {index + 1}/{clubs.length}
+              </p>
+              <button onClick={() => setIndex(index + 1)}>Next</button>
             </div>
           </>
         )
@@ -76,7 +106,7 @@
           <>
             <h1>{title}</h1>
             <Title changeTitle={setTitle} />
-            <Club nama="Manchester United" berdiri="1978" stadion="Old Trafford" />
+            <Club />
             <Liga nama="Liga Inggris" asal="Inggris" />
             <Federasi nama="PSSI" asal="Indonesia" />
           </>
