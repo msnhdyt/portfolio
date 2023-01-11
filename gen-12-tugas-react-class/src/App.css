@@ -1,0 +1,28 @@
+.time-bg {
+  width: 50%;
+  border-radius: 5px;
+  border: 1px solid black;
+  text-align: center;
+  color: black;
+  margin: auto auto;
+}
+
+.red-bg {
+  background-color: red;
+}
+
+.blue-bg {
+  background-color: rgb(90, 184, 228);
+}
+
+h1 {
+  margin: 50px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.format-btn {
+  margin-left: 25%;
+  margin-bottom: 10px;
+}
+
