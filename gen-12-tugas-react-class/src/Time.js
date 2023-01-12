@@ -9,7 +9,7 @@ class Time extends Component {
       hour: this.newDate.hour,
       minute: this.newDate.minute,
       second: this.newDate.second,
-      color: 'blue-bg',
+      color: 'red-bg',
       stop: false
     }
   }
@@ -41,6 +41,8 @@ class Time extends Component {
           this.setState({color: 'red-bg'})
         }, 100)
         // alert('The clock stopped')
+      }
+      if(prevProps.format !== this.props.format){
         this.setState({hour: this.milisecondToReadableTime(Date.now(), this.props.format).hour})
       }
     }
