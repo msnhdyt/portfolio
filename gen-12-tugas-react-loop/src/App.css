@@ -1,0 +1,38 @@
+form div{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 40%;
+}
+
+button {
+  width: 80px;
+  height: 25px;
+}
+
+.book-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.remove-btn {
+  margin: auto auto;
+}
+
+.book {
+  display: flex;
+  flex-direction: row;
+  width: 270px;
+  /* height: 400px; */
+  margin-right: 50px;
+  margin-bottom: 10px;
+}
+
+.book div {
+  flex-basis: 50%;
+}
