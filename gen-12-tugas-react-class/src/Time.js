@@ -29,11 +29,11 @@ class Time extends Component {
   componentDidUpdate(prevProps, prevState){
     if (!this.state.stop){
       setTimeout(()=>{
-        this.setState(this.setState({
+        this.setState({
           hour: this.milisecondToReadableTime(Date.now(), this.props.format).hour,
           minute: this.milisecondToReadableTime(Date.now(), this.props.format).minute,
           second: this.milisecondToReadableTime(Date.now(), this.props.format).second
-        }))
+        })
       }, 1000)
     }else {
       if(prevState.stop !== this.state.stop){
@@ -48,7 +48,7 @@ class Time extends Component {
     }
   }
   render(){
-    // const start = function(){
+    // const start = ()=>{
     //   console.log('start')
     //   console.log(this.state)
       // this.setState({
@@ -58,9 +58,9 @@ class Time extends Component {
       //   stop: false, 
       //   color: 'blue-bg'})
     // }
-    // const stop = function(){
-    //   this.setState({stop: true}) 
-    // }
+    const stop = function(){
+      this.setState({stop: true}) 
+    }
     return <>
     <div className={"time-bg " + this.state.color}>
       <h2>{this.state.hour < 10 ? `0${this.state.hour}`: this.state.hour}
@@ -72,7 +72,7 @@ class Time extends Component {
         second: this.milisecondToReadableTime(Date.now(), this.props.format).second, 
         stop: false, 
         color: 'blue-bg'})}>Start</button>
-      <button onClick={() => this.setState({stop: true})}>Stop</button>
+      <button onClick={() => stop}>Stop</button>
     </div>
     </>
   }
