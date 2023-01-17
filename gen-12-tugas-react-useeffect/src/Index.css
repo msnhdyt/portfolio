@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  text-align: center;
+  /* height: 90vh; */
+}
+
+.time {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 300px;
+  /* background-color: aqua; */
+  font-size: xx-large;
+  margin: auto;
+}
+
+.split {
+  font-size: large;
+  text-align: left;
+}
+
+ul {
+  list-style-type: none;
+}
