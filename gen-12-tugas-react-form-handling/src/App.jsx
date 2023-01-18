@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 // import reactLogo from './assets/react.svg'
 import './App.css'
-import { getAllMovies, getMovie, deleteMovie, addMovie } from "./utils/data"
+import { getAllMovies, genresCol, addMovie } from "./utils/data"
 import Movie from "./Movie"
 import Form from "./Form"
 
@@ -13,7 +13,7 @@ function App() {
     year: "",
     synopsis: "",
     poster: "",
-    genres: [false, false, false, false, false]
+    genres: new Array(genresCol.length).fill(false)
   })
   const handleInput = (key, value, position) => {
     if(key !== "genres"){
@@ -35,7 +35,7 @@ function App() {
       year: "",
       synopsis: "",
       poster: "",
-      genres: [false, false, false, false, false]
+      genres: new Array(genresCol.length).fill(false)
     })
   }
 

@@ -3,7 +3,9 @@ const genresCol = [
   "comedy",
   "drama" ,
   "thriller",
-  "horror"
+  "horror",
+  "sci-fi",
+  "romance"
 ]
 
 let movies = [
@@ -47,6 +49,16 @@ let movies = [
     poster: "https://upload.wikimedia.org/wikipedia/commons/b/b5/12_Angry_Men_%281957_film_poster%29.jpg",
     genres: [
       "thriller",
+    ]
+  },
+  {
+    id: 5,
+    title: "Startup",
+    year: "2020",
+    synopsis: "Young entrepreneurs aspiring to launch virtual dreams into reality compete for success and love in the cutthroat world of Korea's high-tech industry.",
+    poster: "https://occ-0-34-32.1.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABVcUPxmpDBSplGbCKpg_rVEQKd1K8cCGDgdtt5aCX8-rBUX6cKjXlqjz7vcyseoV736jXyHsF2xDpoduI74KPddNLup3QfDTHHfjS21gBnU0FhfivKgEdOD3D-2l2wifdOdFDQ.jpg?r=30b",
+    genres: [
+      "drama", "romance"
     ]
   }
 ]
