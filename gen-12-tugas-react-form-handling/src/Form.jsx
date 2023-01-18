@@ -1,5 +1,4 @@
-import React, {useState} from "react"
-import { genresCol } from "./utils/data"
+import React from "react"
 
 function Form({newMovie, handleInput, onFormSubmitHandler}){
   
@@ -23,13 +22,13 @@ function Form({newMovie, handleInput, onFormSubmitHandler}){
       </label>
       <div>
         {
-          genresCol.map((genre, index) => {
+          Object.keys(newMovie.genres).map((key, index) => {
             return <label key={index}>
               <input type="checkbox" 
-              value={genre} 
-              checked={newMovie.genres[index]} 
-              onChange={(event) => handleInput("genres", "", index)}/>
-              {genre}
+              value={key}
+              checked={newMovie.genres[key]}
+              onChange={(event) => handleInput("genres", event.target.value)}/>
+              {key}
             </label>
           })
         }

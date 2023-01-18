@@ -60,6 +60,16 @@ let movies = [
     genres: [
       "drama", "romance"
     ]
+  },
+  {
+    id: 6,
+    title: "Interstellar",
+    year: "2014",
+    synopsis: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    poster: "https://assets.fontsinuse.com/static/use-media-items/27/26619/full-1500x690/567022b0/interstellar_ver7_xlg.jpeg",
+    genres: [
+      "sci-fi", "action"
+    ]
   }
 ]
 
@@ -73,11 +83,12 @@ function getMovie(id){
 }
 
 function addMovie({title, year, synopsis, poster, genres}){
-  const temp = genres.map((check, index) => {
-    return check ? genresCol[index] : ""
-  })
-
-  const newGenres = temp.filter((el) => el !== "")
+  const newGenres = []
+  for (const iterator of Object.keys(genres)) {
+    if(genres[iterator]){
+      newGenres.push(iterator)
+    }
+  }
   
   movies = [...movies, {
     id: new Date().getTime(),

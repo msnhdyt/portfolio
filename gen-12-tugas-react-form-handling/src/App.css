@@ -20,6 +20,11 @@ form>label {
 .movie {
   display: flex;
   margin-bottom: 15px;
+  max-height: 200px;
+}
+
+img {
+  width: 250px;
 }
 
 .movie__content {

@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from "react"
-// import reactLogo from './assets/react.svg'
+import React, { useState } from "react"
 import './App.css'
 import { getAllMovies, genresCol, addMovie } from "./utils/data"
 import Movie from "./Movie"
 import Form from "./Form"
 
 function App() {
-
+  const genres = {}
+  genresCol.forEach(element => {
+    genres[element] = false
+  })
   const [movies, setMovies] = useState(getAllMovies())
   const [form, setForm] = useState({
     title: "",
     year: "",
     synopsis: "",
     poster: "",
-    genres: new Array(genresCol.length).fill(false)
+    genres: genres
   })
-  const handleInput = (key, value, position) => {
+  const handleInput = (key, value) => {
     if(key !== "genres"){
       setForm({...form, [key]:value})
     }else {
-      const updateGenres = form.genres.map((genre, index) => {
-        return index === position ? !genre : genre
-      })
+      const updateGenres = {...form.genres, [value]:!form.genres[value]}
       setForm({...form, [key]:updateGenres})
     }
   }
@@ -35,7 +35,7 @@ function App() {
       year: "",
       synopsis: "",
       poster: "",
-      genres: new Array(genresCol.length).fill(false)
+      genres: genres
     })
   }
 
