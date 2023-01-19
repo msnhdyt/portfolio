@@ -3,6 +3,7 @@ import './App.css'
 import { getAllMovies, genresCol, addMovie } from "./utils/data"
 import Movie from "./Movie"
 import Form from "./Form"
+import useForm from "./useForm"
 
 function App() {
   const genres = {}
@@ -10,33 +11,19 @@ function App() {
     genres[element] = false
   })
   const [movies, setMovies] = useState(getAllMovies())
-  const [form, setForm] = useState({
+  const [form, handleInput, resetForm] = useForm({
     title: "",
     year: "",
     synopsis: "",
     poster: "",
-    genres: genres
+    genres: []
   })
-  const handleInput = (key, value) => {
-    if(key !== "genres"){
-      setForm({...form, [key]:value})
-    }else {
-      const updateGenres = {...form.genres, [value]:!form.genres[value]}
-      setForm({...form, [key]:updateGenres})
-    }
-  }
 
   const onFormSubmitHandler = (event) => {
     event.preventDefault()
     addMovie(form)
     setMovies(getAllMovies())
-    setForm({
-      title: "",
-      year: "",
-      synopsis: "",
-      poster: "",
-      genres: genres
-    })
+    resetForm()
   }
 
   return <>

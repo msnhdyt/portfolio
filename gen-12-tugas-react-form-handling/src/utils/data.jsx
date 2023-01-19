@@ -83,20 +83,13 @@ function getMovie(id){
 }
 
 function addMovie({title, year, synopsis, poster, genres}){
-  const newGenres = []
-  for (const iterator of Object.keys(genres)) {
-    if(genres[iterator]){
-      newGenres.push(iterator)
-    }
-  }
-  
   movies = [...movies, {
     id: new Date().getTime(),
     title,
     year,
     synopsis,
     poster,
-    genres: newGenres
+    genres
   }]
 }
 
