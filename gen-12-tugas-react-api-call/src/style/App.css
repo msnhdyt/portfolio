@@ -5,6 +5,15 @@
   /* text-align: center; */
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+form label {
+  display: flex;
+  flex-direction: column;
+}
 .products-list {
   display: flex;
   flex-direction: row;

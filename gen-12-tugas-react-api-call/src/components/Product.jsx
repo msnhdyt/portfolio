@@ -1,6 +1,6 @@
 import React from "react"
 
-function Product({id, title, description, price, rating, thumbnail, onProductDeleteHandler, onProductChangeHandler}){
+function Product({id, title, description, price, rating, thumbnail, onProductDeleteHandler, onProductEditHandler}){
   return <>
     <div className="product">
       <img src={thumbnail} alt="" />
@@ -8,7 +8,7 @@ function Product({id, title, description, price, rating, thumbnail, onProductDel
       <p>{rating}</p>
       <p>{description}</p>
       <p>${price}</p>
-      <button onClick={() => onProductChangeHandler(id, {title:"edit product", price:"5000"})}>edit</button>
+      <button onClick={() => onProductEditHandler(id)}>edit</button>
       <button onClick={() => onProductDeleteHandler(id)}>delete</button>
     </div>
   </>

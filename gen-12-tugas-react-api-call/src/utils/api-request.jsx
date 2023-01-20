@@ -45,8 +45,13 @@ const deleteProduct = (id) => {
       }})
 }
 
-const updateProduct = (id, product) => {
-  return axios.put(BASE_URL + "/" + id, product)
+const updateProduct = (product) => {
+  return axios.put(BASE_URL + "/" + product.id, {
+    title: product.title,
+    rating: product.rating,
+    description: product.description,
+    price: product.price,
+  })
     .then(response => {
       return {
         error: false,
@@ -59,9 +64,24 @@ const updateProduct = (id, product) => {
       }})
 }
 
+const getProductById = (id) => {
+  return axios.get(BASE_URL + "/" + id)
+  .then(response => {
+    return {
+      error: false,
+      data: response["data"]
+    }})
+  .catch(err => {
+    return {
+      error: true,
+      message: err
+    }})
+}
+
 export {
   getAllProducts,
   addProduct,
   deleteProduct,
-  updateProduct
+  updateProduct,
+  getProductById
 }
