@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  display: flex;
+  /* place-items: center; */
+  /* min-width: 300px; */
+  /* min-height: 100vh; */
+}
+
+#root {
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 100px;
+}
+
+header {
+  width: 100%;
+  margin-bottom: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(31, 29, 29);
+  padding: 0 100px;
+}
+
+header a {
+  text-decoration: none;
+  color: white;
+}
+
+main {
+  margin: 100px auto;
+}
+
+form {
+  width: 50%;
+  min-width: 300px;
+  margin: 0 auto;
+}
+
+form label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.note-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.note-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 200px;
+  height: 285px;
+  border: 1px solid black;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-right: 20px;
+  overflow: hidden;
+}
+
+.note-item__content {
+  height: 70%;
+  text-align: justify;
+  overflow: hidden;
+}
+
+.note-item__button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.note-item__button {
+  background-color: white;
+  border: none;
+  font-size: x-large;
+}
+
+.note-item__button:hover {
+  cursor: pointer;
+}
+
+.add-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: white;
+  border: none;
+  font-size:50px;
+}
+
+.add-button:hover {
+  cursor: pointer;
+}
