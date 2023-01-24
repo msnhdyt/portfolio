@@ -43,11 +43,25 @@
       "archived": false
     },
     {
-      "title": "ini edit",
-      "body": "ini body edit",
-      "createdAt": "2023-01-23T08:34:01.942Z",
+      "title": "fisika",
+      "body": "<ol>\n<li>ini fisika fafafa😍&nbsp;</li>\n<li>dafafa</li>\n</ol>\n",
+      "createdAt": "2023-01-24T15:52:37.037Z",
       "archived": false,
-      "id": 7
+      "id": 8
+    },
+    {
+      "title": "title 2",
+      "body": "<p><span style=\"font-size: 30px;font-family: Arial;\">coba font 30</span><span style=\"font-family: Arial;\"> pake arial</span></p>\n",
+      "createdAt": "2023-01-24T17:09:44.092Z",
+      "archived": false,
+      "id": 10
+    },
+    {
+      "title": "Aku berpikir maka aku ada ...",
+      "body": "<p>Salah satu kutipan <span style=\"color: rgb(26,188,156);\">Rene Decartes </span><span style=\"color: rgb(0,0,0);\">yang terkenal adalah \"<em>aku berpikir maka aku ada\"</em></span></p>\n<div style=\"text-align:none;\"><img src=\"https://static.republika.co.id/uploads/images/detailnews/rene_200306180207-481.jpg\" alt=\"undefined\" style=\"height: auto;width: auto\"/></div>\n<p></p>\n",
+      "createdAt": "2023-01-24T17:23:26.850Z",
+      "archived": false,
+      "id": 11
     }
   ]
 }

@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root from './pages/Root'
 import Home from './pages/Home'
 import AddPage from './pages/AddPage'
+import DetailPage from './pages/DetailPage'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: 'add/:noteId?',
         element: <AddPage />
+      },
+      {
+        path: 'note/:noteId',
+        element: <DetailPage />
       }
     ]
   }

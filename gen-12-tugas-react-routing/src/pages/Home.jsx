@@ -41,7 +41,7 @@ function Home() {
           })}
         </section>
       )}
-      <button className="add-button" onClick={onAddButtonClickHandler}>
+      <button className="add-button button-fixed" onClick={onAddButtonClickHandler}>
         <IoIosAddCircle />
       </button>
     </>

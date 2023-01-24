@@ -1,34 +1,47 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import Form from '../components/Form'
-import useForm from '../hooks/useForm'
 import { addNote, updateNote, getNote } from '../utils/api-request'
+import DraftEditor from '../components/DraftEditor'
+import { EditorState, convertToRaw, convertFromHTML, ContentState } from 'draft-js'
+import draftToHtml from 'draftjs-to-html'
 
 function AddPage() {
-  const { form, handleInput, resetForm, setForm } = useForm({
-    title: '',
-    body: ''
-  })
+  const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
+  const [title, setTitle] = useState('')
+  const [isEdit, setIsEdit] = useState(false)
+  const [editNote, setEditNote] = useState('')
+
   const { noteId } = useParams()
   const navigate = useNavigate()
+
+  const onTitleChangeHandler = (event) => {
+    setTitle(event.target.value)
+  }
 
   useEffect(() => {
     ;(async function () {
       if (noteId) {
+        setIsEdit(true)
         const note = await getNote(noteId)
-        setForm(note)
+        setEditNote(note)
+        setTitle(note.title)
+        const blocksFromHtml = convertFromHTML(note.body)
+        const state = ContentState.createFromBlockArray(blocksFromHtml.contentBlocks, blocksFromHtml.entityMap)
+        setEditorState(EditorState.createWithContent(state))
       }
     })()
   }, [])
 
   const onFormSubmitHandler = async (event) => {
     event.preventDefault()
-    const isEdit = !!form.id
     const note = {
-      ...form
+      title,
+      body: draftToHtml(convertToRaw(editorState.getCurrentContent())),
+      createdAt: editNote.createdAt,
+      archived: false
     }
     if (isEdit) {
-      await updateNote(form.id, note)
+      await updateNote(noteId, note)
     } else {
       await addNote({
         ...note,
@@ -42,7 +55,7 @@ function AddPage() {
   return (
     <>
       <section>
-        <Form form={form} handleInput={handleInput} onFormSubmitHandler={onFormSubmitHandler} />
+        <DraftEditor title={title} onTitleChangeHandler={onTitleChangeHandler} editorState={editorState} setEditorState={setEditorState} onFormSubmitHandler={onFormSubmitHandler} />
       </section>
     </>
   )

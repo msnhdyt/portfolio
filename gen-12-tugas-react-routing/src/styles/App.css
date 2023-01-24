@@ -9,17 +9,11 @@ body {
 #root {
   width: 100%;
   margin: 0 auto;
-  padding: 32px 100px;
 }
 
 header {
-  width: 100%;
-  margin-bottom: 30px;
-  position: absolute;
-  top: 0;
-  left: 0;
   background-color: rgb(31, 29, 29);
-  padding: 0 100px;
+  padding: 40px 100px;
 }
 
 header a {
@@ -27,11 +21,18 @@ header a {
   color: white;
 }
 
-main {
-  margin: 100px auto;
+header h1 {
+  width: 100%;
+  margin: 0 0;
 }
 
-form {
+main {
+  padding: 32px 100px;
+  margin: 50pxpx auto 0;
+  height: fit-content;
+}
+
+/* form {
   width: 50%;
   min-width: 300px;
   margin: 0 auto;
@@ -41,6 +42,11 @@ form label {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
+} */
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 .note-list {
@@ -84,15 +90,39 @@ form label {
   cursor: pointer;
 }
 
-.add-button {
+.button-fixed {
   position: fixed;
   bottom: 20px;
   right: 20px;
   background-color: white;
   border: none;
-  font-size:50px;
+  font-size: 40px;
 }
 
-.add-button:hover {
+.button-fixed:hover {
   cursor: pointer;
+}
+
+.draft-editor__title {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.draft-editor__title input {
+  height: 20px;
+}
+
+.draft-editor__body { 
+  border: 1px solid black; 
+  padding: 2px; 
+  min-height: 400px;
+}
+
+.detail-page__title {
+  font-size: 35px;
+}
+
+.detail-page__body {
+  text-align: justify;
 }
