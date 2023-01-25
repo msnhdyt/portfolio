@@ -4,6 +4,7 @@ import { addNote, updateNote, getNote } from '../utils/api-request'
 import DraftEditor from '../components/DraftEditor'
 import { EditorState, convertToRaw, convertFromHTML, ContentState } from 'draft-js'
 import draftToHtml from 'draftjs-to-html'
+import htmlToDraft from 'html-to-draftjs'
 
 function AddPage() {
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
@@ -25,7 +26,7 @@ function AddPage() {
         const note = await getNote(noteId)
         setEditNote(note)
         setTitle(note.title)
-        const blocksFromHtml = convertFromHTML(note.body)
+        const blocksFromHtml = htmlToDraft(note.body)
         const state = ContentState.createFromBlockArray(blocksFromHtml.contentBlocks, blocksFromHtml.entityMap)
         setEditorState(EditorState.createWithContent(state))
       }
