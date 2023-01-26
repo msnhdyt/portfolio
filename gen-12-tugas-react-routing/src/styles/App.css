@@ -64,9 +64,13 @@ a {
   height: 285px;
   border: 1px solid black;
   padding: 10px;
-  margin-bottom: 10px;
-  margin-right: 20px;
+  /* margin-bottom: 10px;
+  margin-right: 20px; */
+  margin: 10px;
   overflow: hidden;
+  /* resize: both; */
+  cursor: move;
+  border-radius: 0 15px;
 }
 
 .note-item__content {
@@ -81,7 +85,7 @@ a {
 }
 
 .note-item__button {
-  background-color: white;
+  background-color: transparent;
   border: none;
   font-size: x-large;
 }
@@ -94,7 +98,7 @@ a {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: white;
+  background-color: transparent;
   border: none;
   font-size: 40px;
 }

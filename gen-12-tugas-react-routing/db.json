@@ -15,11 +15,11 @@
       "archived": false
     },
     {
-      "id": 3,
       "title": "Modularization",
-      "body": "Dalam konteks pemrograman JavaScript, modularization merupakan teknik dalam memecah atau menggunakan kode dalam berkas JavaScript secara terpisah berdasarkan tanggung jawabnya masing-masing.",
+      "body": "<p><span style=\"color: rgb(204,204,204);\">Dalam konteks pemrograman JavaScript, modularization merupakan teknik dalam memecah atau menggunakan kode dalam berkas JavaScript secara terpisah berdasarkan tanggung jawabnya masing-masing.</span></p>\n",
       "createdAt": "2023-01-23T06:17:57.013Z",
-      "archived": false
+      "archived": false,
+      "id": 3
     },
     {
       "id": 4,
@@ -51,7 +51,7 @@
     },
     {
       "title": "title 2",
-      "body": "<p><span style=\"font-size: 30px;font-family: Arial;\">coba font 30 pake arial </span><span style=\"font-family: Impact;\">font impact</span></p>\n",
+      "body": "<p><span style=\"color: rgb(255,255,255);background-color: rgb(0,0,0);font-size: 30px;font-family: Arial;\">coba font 30 pake arial </span><span style=\"color: rgb(255,255,255);background-color: rgb(0,0,0);font-family: Impact;\">font impact</span></p>\n",
       "createdAt": "2023-01-24T17:09:44.092Z",
       "archived": false,
       "id": 10
