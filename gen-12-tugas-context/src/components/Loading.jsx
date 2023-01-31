@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { LangContext } from '../contexts/LangProvider'
 
 function Loading() {
+  const { lang } = useContext(LangContext)
   return (
     <>
-      <div>Memuat data ...</div>
+      <div>{lang === 'id' ? 'Memuat data ...' : 'loading ...'}</div>
     </>
   )
 }
