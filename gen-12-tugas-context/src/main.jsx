@@ -8,6 +8,7 @@ import AddPage from './pages/AddPage'
 import DetailPage from './pages/DetailPage'
 import NotesProvider from './contexts/NotesProvider'
 import ThemeProvider from './contexts/ThemeProvider'
+import LangProvider from './contexts/LangProvider'
 
 const router = createBrowserRouter([
   {
@@ -31,9 +32,11 @@ const router = createBrowserRouter([
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <ThemeProvider>
-    <NotesProvider>
-      <RouterProvider router={router} />
-    </NotesProvider>
-  </ThemeProvider>
+  <LangProvider>
+    <ThemeProvider>
+      <NotesProvider>
+        <RouterProvider router={router} />
+      </NotesProvider>
+    </ThemeProvider>
+  </LangProvider>
 )

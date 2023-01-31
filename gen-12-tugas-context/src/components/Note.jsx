@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { showFormattedDate } from '../utils/formatDate'
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
 import parser from 'html-react-parser'
 import { Link } from 'react-router-dom'
 import Draggable from 'react-draggable'
+import { LangContext } from '../contexts/LangProvider'
 
 function Note({ id, title, createdAt, body, onDeleteHandler, onUpdateHandler }) {
+  const { lang } = useContext(LangContext)
+
   const trackPos = (position, id) => {
     localStorage.setItem(
       id,
@@ -37,7 +40,7 @@ function Note({ id, title, createdAt, body, onDeleteHandler, onUpdateHandler }) 
             <h3 className="note-item__content__title">
               <Link to={`/note/${id}`}>{title}</Link>
             </h3>
-            <p>{showFormattedDate(createdAt)}</p>
+            <p>{showFormattedDate(createdAt, lang)}</p>
             <article className="note-item__content__body">{parser(body)}</article>
           </div>
           <div className="note-item__button-container">

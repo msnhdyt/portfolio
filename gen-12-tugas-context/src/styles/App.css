@@ -47,12 +47,20 @@ button:hover {
 button {
   color: var(--on-background);
   background-color: transparent;
+  border: none;
+}
+
+.header-button {
+  display: flex;
 }
 
 .toggle-theme {
   background-color: transparent;
-  border: none;
   font-size: xx-large;
+}
+
+.toggle-lang {
+  font-size: x-large;
 }
 
 main {

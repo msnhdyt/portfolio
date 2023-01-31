@@ -5,9 +5,11 @@ import Loading from '../components/Loading'
 import { useNavigate } from 'react-router-dom'
 import { IoIosAddCircle } from 'react-icons/all'
 import { UserContext } from '../contexts/NotesProvider'
+import { LangContext } from '../contexts/LangProvider'
 
 function Home() {
   const { notes, setNotes } = useContext(UserContext)
+  const { lang } = useContext(LangContext)
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true)
 
@@ -42,7 +44,7 @@ function Home() {
           })}
         </section>
       )}
-      <button className="add-button button-fixed" onClick={onAddButtonClickHandler}>
+      <button className="add-button button-fixed" onClick={onAddButtonClickHandler} title={lang === 'id' ? 'tambah note' : 'add note'}>
         <IoIosAddCircle />
       </button>
     </>
