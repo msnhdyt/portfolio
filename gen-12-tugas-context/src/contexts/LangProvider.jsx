@@ -1,12 +1,15 @@
-import { useState, createContext } from 'react'
+import { useState, createContext, useEffect } from 'react'
 
 export const LangContext = createContext()
 
 export default function LangProvider({ children }) {
-  const [lang, setLang] = useState('id')
+  const [lang, setLang] = useState(localStorage.getItem('lang') || 'id')
   const toggleLang = () => {
     setLang(lang === 'id' ? 'en' : 'id')
   }
+  useEffect(() => {
+    localStorage.setItem('lang', lang)
+  }, [lang])
   return (
     <>
       <LangContext.Provider
