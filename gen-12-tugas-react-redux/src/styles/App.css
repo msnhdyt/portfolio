@@ -211,6 +211,7 @@ a {
 .profile__info {
   border: 1px solid var(--on-background);
   position: absolute;
+  z-index: 1;
   right: 0;
   width: auto;
   padding: 10px;
@@ -223,4 +224,14 @@ a {
 
 .profile__info__logout:hover {
   cursor: pointer;
+}
+
+/* 404 page */
+
+.error-page {
+  text-align: center;
+}
+
+.not-found-image {
+  max-width: 400px;
 }

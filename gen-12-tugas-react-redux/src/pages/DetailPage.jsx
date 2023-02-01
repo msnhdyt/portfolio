@@ -27,7 +27,6 @@ function DetailPage() {
         <h1 className="detail-page__title">{note.title}</h1>
         <p className="detail-page__createdAt">{showFormattedDate(note.createdAt, lang)}</p>
         <hr />
-        {console.log(parser(note.body))}
         <article className="detail-page__body">{parser(note.body)}</article>
       </section>
     </>

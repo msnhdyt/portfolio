@@ -44,10 +44,21 @@ const updateNote = async (id, note) => {
   }
 }
 
+const getAuthUser = async (credential) => {
+  try {
+    const user = await axios.post('https://dummyjson.com/auth/login', credential)
+    return user.data
+  } catch (error) {
+    alert("Incorrect username or password")
+    return {}
+  }
+}
+
 export {
   getAllNotes,
   getNote,
   addNote,
   deleteNote,
-  updateNote
+  updateNote,
+  getAuthUser
 }

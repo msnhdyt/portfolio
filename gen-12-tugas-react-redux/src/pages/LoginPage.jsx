@@ -1,8 +1,8 @@
 import React from 'react'
-import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import useForm from '../hooks/useForm'
 import { useNavigate } from 'react-router-dom'
+import { getAuthUser } from '../utils/api-request'
 
 function LoginPage() {
   const { form, handleInput } = useForm({
@@ -14,11 +14,12 @@ function LoginPage() {
 
   const login = async (event) => {
     event.preventDefault()
-    const user = await axios.post('https://dummyjson.com/auth/login', form)
+    const user = await getAuthUser(form)
     dispatch({
       type: 'user/set_auth_user',
-      payload: user.data
+      payload: user
     })
+    sessionStorage.setItem('authUser', JSON.stringify(user))
     navigate('/')
   }
 
