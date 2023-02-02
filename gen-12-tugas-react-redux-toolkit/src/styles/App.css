@@ -211,7 +211,7 @@ a {
 .profile__info {
   border: 1px solid var(--on-background);
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   right: 0;
   width: auto;
   padding: 10px;
@@ -224,6 +224,15 @@ a {
 
 .profile__info__logout:hover {
   cursor: pointer;
+}
+
+.dummy {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 1;
 }
 
 /* 404 page */

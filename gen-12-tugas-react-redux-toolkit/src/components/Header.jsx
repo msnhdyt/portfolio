@@ -22,10 +22,6 @@ function Header() {
     setIsShowProfile(!isShowProfile)
   }
 
-  const onAnywhereClickHandler = () => {
-    if (isShowProfile) setIsShowProfile(false)
-  }
-
   const onLogoutHandler = () => {
     dispatch(unsetAuthUser())
     sessionStorage.clear()
@@ -34,7 +30,7 @@ function Header() {
 
   return (
     <>
-      <header onClick={onAnywhereClickHandler}>
+      <header>
         <h1>
           <Link to="/">
             My Notes
@@ -69,6 +65,7 @@ function Header() {
           </div>
         )}
       </header>
+      {isShowProfile && <div className="dummy" onClick={onProfileClickHandler}></div>}
     </>
   )
 }
