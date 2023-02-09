@@ -5,9 +5,19 @@ import { showFormattedDate } from '../utils/formatDate'
 export default function Note({ title, body, createdAt, label, color }) {
   return (
     <>
-      <View style={[styles.container, { backgroundColor: color }]}>
+      <View
+        style={[
+          styles.container,
+          {
+            backgroundColor: color,
+            borderColor: body !== '' ? '#FF8B65' : color,
+            borderStyle: 'solid',
+            borderWidth: 1
+          }
+        ]}
+      >
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.textBody}>{body}</Text>
+        {body !== '' && <Text style={[styles.textBody, { marginBottom: 10 }]}>{body}</Text>}
         <View style={styles.footer}>
           <Text style={styles.textBody}>{showFormattedDate(createdAt)}</Text>
           <Text style={styles.textBody}>{label.join('  |  ')}</Text>
@@ -31,7 +41,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   title: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    marginBottom: 10
   },
   textBody: {
     color: 'grey',

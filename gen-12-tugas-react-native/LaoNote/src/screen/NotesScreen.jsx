@@ -1,11 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Text, ScrollView, StyleSheet } from 'react-native'
+import { useIsFocused } from '@react-navigation/native'
 
 import Note from '../components/Note'
 import { getAllNotes } from '../utils/data'
 
 export default function NotesScreen() {
-  const [notes, setNotes] = useState(() => getAllNotes())
+  const [notes, setNotes] = useState(getAllNotes())
+  const isFocused = useIsFocused()
+  useEffect(() => {
+    const tempNotes = [...getAllNotes()]
+    setNotes(tempNotes.reverse())
+  }, [isFocused])
   return (
     <>
       <ScrollView style={styles.container}>
@@ -21,6 +27,7 @@ export default function NotesScreen() {
 const styles = StyleSheet.create({
   container: {
     // paddingHorizontal: 15
+    marginBottom: 30
   },
   title: {
     marginVertical: 15

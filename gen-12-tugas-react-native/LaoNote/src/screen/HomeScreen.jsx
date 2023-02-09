@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ScrollView, Text, StyleSheet, View, Button, TouchableOpacity, TouchableHighlight } from 'react-native'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { Add } from 'iconsax-react-native'
@@ -8,6 +8,7 @@ import NotesScreen from './NotesScreen'
 import HighlightsScreen from './HighlightsScreen'
 import FavoriteNotesScreen from './FavoriteNotesScreen'
 import Dummy from './Dummy'
+import { getAllNotes } from '../utils/data'
 
 const Tab = createMaterialTopTabNavigator()
 
@@ -128,9 +129,9 @@ export default function HomeScreen({ navigation }) {
         <Tab.Screen name="Highlights" component={HighlightsScreen} />
         <Tab.Screen name="Favorite Notes" component={FavoriteNotesScreen} />
       </Tab.Navigator> */}
-      <TouchableOpacity style={styles.addButton} onPress={onAddClickHandler}>
+      <TouchableHighlight style={styles.addButton} onPress={onAddClickHandler}>
         <Add size="32" color="white" />
-      </TouchableOpacity>
+      </TouchableHighlight>
     </>
   )
 }
@@ -138,7 +139,8 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    padding: 15
+    padding: 15,
+    paddingTop: 30
   },
   tabContainer: {
     flex: 1,
