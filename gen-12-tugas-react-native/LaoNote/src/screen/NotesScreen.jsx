@@ -17,7 +17,8 @@ export default function NotesScreen() {
       <ScrollView style={styles.container}>
         <Text style={styles.title}>List Notes</Text>
         {notes.map((note, index) => {
-          return <Note key={index} title={note.title} body={index !== 0 ? '' : note.body} createdAt={note.createdAt} label={note.label} color={note.color} />
+          // console.log(note.title, note.favorite)
+          return <Note key={note.id} id={note.id} title={note.title} body={index !== 0 ? '' : note.body} createdAt={note.createdAt} label={note.label} color={note.color} favorite={note.favorite} />
         })}
       </ScrollView>
     </>
