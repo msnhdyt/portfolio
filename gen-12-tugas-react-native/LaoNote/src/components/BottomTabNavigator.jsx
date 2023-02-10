@@ -9,6 +9,7 @@ import { TouchableHighlight } from 'react-native'
 import { Home2, ArchiveBook, Category2, Setting2 } from 'iconsax-react-native'
 import CategoryScreen from '../screen/CategoryScreen'
 import { AddCircle } from 'iconsax-react-native'
+import ArchiveScreen from '../screen/ArchiveScreen'
 
 const BottomTab = createBottomTabNavigator()
 
@@ -43,13 +44,27 @@ export default function BottomTabNavigator() {
             headerShadowVisible: false
           }}
         />
-        <BottomTab.Screen name="Archive" component={Dummy} />
+        <BottomTab.Screen
+          name="Archive"
+          component={ArchiveScreen}
+          options={({ navigation }) => {
+            return {
+              headerTitle: (props) => <Text style={{ fontSize: 20 }}>Archives</Text>,
+              headerStyle: {
+                height: 90
+              },
+              headerShadowVisible: false,
+              headerTitleAlign: 'center'
+            }
+          }}
+        />
         <BottomTab.Screen
           name="Category"
           component={CategoryScreen}
           options={({ navigation }) => {
             return {
-              headerTitle: (props) => <Text>Categories</Text>,
+              headerTitle: (props) => <Text style={{ fontSize: 20 }}>Categories</Text>,
+
               headerStyle: {
                 height: 90
               },

@@ -1,51 +1,72 @@
 import { Lovely } from 'iconsax-react-native'
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Pressable } from 'react-native'
 
 import { showFormattedDate } from '../utils/formatDate'
-import { toggleFavorite } from '../utils/data'
+import { toggleArchive, toggleFavorite, deleteNote } from '../utils/data'
+import ModalOnLongPressNote from './ModalOnLongPressNote'
 
-export default function Note({ id, title, body, createdAt, label, color, favorite, updateListNotes }) {
+export default function Note({ id, title, body, createdAt, label, color, favorite, archive, updateListNotes }) {
   // console.log(title, favorite)
   const temp = favorite
   const [favState, setFavState] = useState(temp)
   // console.log(title, favState)
+  const [modalVisible, setModalVisible] = useState(false)
+  const [noteVisible, setNoteVisible] = useState(true)
+
   const onPressHandler = () => {
     toggleFavorite(id)
     setFavState(!favState)
     if (updateListNotes) updateListNotes()
   }
-  return (
-    <>
-      <View
-        style={[
-          styles.container,
-          {
-            backgroundColor: color,
-            borderColor: body !== '' ? '#FF8B65' : color,
-            borderStyle: 'solid',
-            borderWidth: 1
-          }
-        ]}
-      >
-        <TouchableOpacity style={styles.favIcon} onPress={onPressHandler}>
-          <Lovely size="20" color={favState ? '#F47373' : 'black'} variant={favState ? 'Bold' : 'TwoTone'} />
-        </TouchableOpacity>
-        <Text style={styles.title}>{title}</Text>
-        {body !== '' && <Text style={[styles.textBody, { marginBottom: 10 }]}>{body}</Text>}
-        <View style={styles.footer}>
-          <Text style={styles.textBody}>{showFormattedDate(createdAt)}</Text>
-          <Text style={styles.textBody}>{label.join('  |  ')}</Text>
-        </View>
-      </View>
-    </>
-  )
+
+  const onDeleteHandler = () => {
+    deleteNote(id)
+    setModalVisible(false)
+    setNoteVisible(false)
+  }
+
+  const onArchiveHandler = () => {
+    toggleArchive(id)
+    setModalVisible(false)
+    setNoteVisible(false)
+  }
+
+  if (noteVisible)
+    return (
+      <>
+        <Pressable
+          style={[
+            styles.container,
+            {
+              backgroundColor: color,
+              borderColor: body !== '' ? '#FF8B65' : color,
+              borderStyle: 'solid',
+              borderWidth: 1
+            }
+          ]}
+          onLongPress={() => setModalVisible(true)}
+        >
+          <TouchableOpacity style={styles.favIcon} onPress={onPressHandler}>
+            <Lovely size="20" color={favState ? '#F47373' : 'black'} variant={favState ? 'Bold' : 'TwoTone'} />
+          </TouchableOpacity>
+          <Text style={styles.title}>{title}</Text>
+          {body !== '' && <Text style={[styles.textBody, { marginBottom: 10 }]}>{body}</Text>}
+          <View style={styles.footer}>
+            <Text style={styles.textBody}>{showFormattedDate(createdAt)}</Text>
+            <Text style={styles.textBody}>{label.join('  |  ')}</Text>
+          </View>
+        </Pressable>
+        <ModalOnLongPressNote visible={modalVisible} setVisible={setModalVisible} onDeleteHandler={onDeleteHandler} onArchiveHandler={onArchiveHandler} archive={archive} />
+      </>
+    )
+  else return <></>
 }
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'orange',
-    borderRadius: 5,
+    borderRadius: 10,
     marginBottom: 15,
     // marginHorizontal: 15,
     padding: 10

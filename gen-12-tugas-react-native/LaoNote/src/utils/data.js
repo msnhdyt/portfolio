@@ -6,6 +6,7 @@ let notes = [
     "createdAt": "2023-01-23T06:17:57.013Z",
     "color": '#F2F7FF',
     "favorite": false,
+    "archive": false,
     "label": ['Programming', 'Bundler']
   },
   {
@@ -15,6 +16,7 @@ let notes = [
     "createdAt": "2023-01-28T06:17:57.013Z",
     "color": "#FEF6E5",
     "favorite": false,
+    "archive": false,
     "label": ['Programming', 'React']
   },
   {
@@ -24,6 +26,7 @@ let notes = [
     "createdAt": "2023-01-23T06:17:57.013Z",
     "color": "#E4FEE6",
     "favorite": false,
+    "archive": true,
     "label": ['Programming']
   },
   {
@@ -33,6 +36,7 @@ let notes = [
     "createdAt": "2023-01-23T06:17:57.013Z",
     "color": "#FEF6E5",
     "favorite": false,
+    "archive": false,
     "label": ['Programming']
   },
   {
@@ -42,6 +46,7 @@ let notes = [
     "createdAt": "2023-01-23T06:17:57.013Z",
     "color": "#E4FEE6",
     "favorite": false,
+    "archive": false,
     "label": ['Programming']
   },
   {
@@ -50,6 +55,7 @@ let notes = [
     "createdAt": "2023-01-23T08:34:01.942Z",
     "label": ['Programming', 'Cooking'],
     "favorite": true,
+    "archive": false,
     "color": "#E4FEE6",
     "id": 7
   }
@@ -94,6 +100,29 @@ const addNote = ({title, body, label}) => {
   }]
 }
 
+const deleteNote = (id) => {
+  const tempNotes = notes.filter((note) => note.id != id)
+  notes = [...tempNotes]
+}
+
+const toggleArchive = (id) => {
+  const tempNotes = notes.map((note) => {
+    if(note.id == id){
+      return { ...note, archive:!note.archive}
+    }
+    return note
+  })
+  notes = [...tempNotes]
+}
+
+const getArchiveNotes = () => {
+  return notes.filter((note) => note.archive)
+}
+
+const getUnarchiveNotes = () => {
+  return notes.filter((note) => !note.archive)
+}
+
 const getNotesByCategory = (category) => {
   return notes.filter((note) => note.label.includes(category))
 }
@@ -113,6 +142,10 @@ const getColorMapping = (category) => {
 
 const getAllColors = () => {
   return colors
+}
+
+const getGroupColor = (color) => {
+  return colors[color]
 }
 
 const toggleFavorite = (id) => {
@@ -138,5 +171,10 @@ export {
   getAllColors,
   addCategory,
   toggleFavorite,
-  getFavoriteNotes
+  getFavoriteNotes,
+  getGroupColor,
+  deleteNote,
+  toggleArchive,
+  getArchiveNotes,
+  getUnarchiveNotes
 }

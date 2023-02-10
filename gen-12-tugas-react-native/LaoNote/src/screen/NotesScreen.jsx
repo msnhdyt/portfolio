@@ -3,13 +3,13 @@ import { Text, ScrollView, StyleSheet } from 'react-native'
 import { useIsFocused } from '@react-navigation/native'
 
 import Note from '../components/Note'
-import { getAllNotes } from '../utils/data'
+import { getUnarchiveNotes } from '../utils/data'
 
 export default function NotesScreen() {
-  const [notes, setNotes] = useState(getAllNotes())
+  const [notes, setNotes] = useState(getUnarchiveNotes())
   const isFocused = useIsFocused()
   useEffect(() => {
-    const tempNotes = [...getAllNotes()]
+    const tempNotes = [...getUnarchiveNotes()]
     setNotes(tempNotes.reverse())
   }, [isFocused])
   return (
