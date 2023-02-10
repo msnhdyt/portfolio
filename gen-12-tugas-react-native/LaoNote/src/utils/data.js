@@ -125,6 +125,10 @@ const toggleFavorite = (id) => {
   notes = [...tempNotes]
 }
 
+const getFavoriteNotes = () => {
+  return notes.filter((note) => note.favorite)
+}
+
 export {
   getAllNotes,
   addNote,
@@ -133,5 +137,6 @@ export {
   getColorMapping,
   getAllColors,
   addCategory,
-  toggleFavorite
+  toggleFavorite,
+  getFavoriteNotes
 }

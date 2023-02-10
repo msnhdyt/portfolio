@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { showFormattedDate } from '../utils/formatDate'
 import { toggleFavorite } from '../utils/data'
 
-export default function Note({ id, title, body, createdAt, label, color, favorite }) {
+export default function Note({ id, title, body, createdAt, label, color, favorite, updateListNotes }) {
   // console.log(title, favorite)
   const temp = favorite
   const [favState, setFavState] = useState(temp)
@@ -13,6 +13,7 @@ export default function Note({ id, title, body, createdAt, label, color, favorit
   const onPressHandler = () => {
     toggleFavorite(id)
     setFavState(!favState)
+    if (updateListNotes) updateListNotes()
   }
   return (
     <>
