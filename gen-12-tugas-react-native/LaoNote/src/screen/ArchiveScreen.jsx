@@ -30,7 +30,10 @@ export default function ArchiveScreen() {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 15,
-    marginBottom: 30
+    marginBottom: 30,
+    backgroundColor: 'white',
+    borderTopColor: 'whitesmoke',
+    borderTopWidth: 1
   },
   title: {
     marginVertical: 15

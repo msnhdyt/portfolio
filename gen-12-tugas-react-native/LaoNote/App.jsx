@@ -1,23 +1,19 @@
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { CloseCircle, TickCircle } from 'iconsax-react-native'
 
-import HomeScreen from './src/screen/HomeScreen'
 import AddScreen from './src/screen/AddScreen'
-import Header from './src/components/HomeHeader'
 import BottomTabNavigator from './src/components/BottomTabNavigator'
-import AddHeader from './src/components/AddHeader'
 import { CloseButton, SaveButton } from './src/components/AddHeader'
 import AddCategoryScreen from './src/screen/AddCategoryScreen'
+import NotesByCategoryScreen from './src/screen/NotesByCategoryScreen'
 
 const Stack = createNativeStackNavigator()
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ animation: 'none' }}>
         <Stack.Screen name="BottomTabNavigator" component={BottomTabNavigator} options={{ headerShown: false }} />
         <Stack.Screen
           name="Add"
@@ -43,6 +39,24 @@ export default function App() {
               headerTitleAlign: 'center',
               headerLeft: (props) => <CloseCircle size="28" color="black" variant="Outline" onPress={() => navigation.navigate('Category')} />,
               headerRight: (props) => <TickCircle size="28" color="black" variant="Outline" />
+              // header: (props) => <AddHeader {...props} />,
+            }
+          }}
+        />
+        <Stack.Screen
+          name="NotesByCategory"
+          component={NotesByCategoryScreen}
+          options={({ navigation }) => {
+            return {
+              title: '',
+              headerShadowVisible: false,
+              headerTitleAlign: 'center',
+              headerTitleStyle: {
+                fontSize: 20,
+                fontFamily: 'normal'
+              }
+              // headerLeft: (props) => <CloseCircle size="28" color="black" variant="Outline" onPress={() => navigation.navigate('Category')} />,
+              // headerRight: (props) => <TickCircle size="28" color="black" variant="Outline" />
               // header: (props) => <AddHeader {...props} />,
             }
           }}

@@ -4,17 +4,29 @@ import { SaveButton } from '../components/AddHeader'
 
 import useInput from '../hooks/useInput'
 import { addNote, getAllCategories } from '../utils/data'
+import { ediNote } from '../utils/data'
 
-export default function AddScreen({ navigation }) {
-  const [input, handleInput] = useInput({
+export default function AddScreen({ route, navigation }) {
+  let editNote = {
+    id: '',
     title: '',
-    body: ''
+    body: '',
+    label: []
+  }
+
+  if (route.params) {
+    editNote = route.params
+  }
+
+  const [input, handleInput] = useInput({
+    title: editNote.title || '',
+    body: editNote.body || ''
   })
 
   const [cat, setCat] = useState({})
   useEffect(() => {
     const tempCat = {}
-    getAllCategories().forEach((cat) => (tempCat[cat] = false))
+    getAllCategories().forEach((cat) => (tempCat[cat] = editNote.label.includes(cat)))
     setCat({ ...tempCat })
   }, [])
 
@@ -23,13 +35,17 @@ export default function AddScreen({ navigation }) {
   }
 
   const onSaveHandler = () => {
-    // console.log('dari add screen', input)
     const label = Object.keys(cat).filter((key) => cat[key])
-    addNote({
+    const tempNote = {
       title: input.title,
       body: input.body,
       label
-    })
+    }
+    if (route.params) {
+      ediNote(editNote.id, tempNote)
+    } else {
+      addNote(tempNote)
+    }
     navigation.navigate('Home')
   }
 

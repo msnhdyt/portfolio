@@ -105,6 +105,20 @@ const deleteNote = (id) => {
   notes = [...tempNotes]
 }
 
+const ediNote = (id, newNote) => {
+  const tempNotes = notes.map((note) => {
+    if(note.id == id){
+      return { ...note, title: newNote.title, body: newNote.body, label: newNote.label}
+    }
+    return note
+  })
+  notes = [...tempNotes]
+}
+
+const getNoteById = (id) => {
+  return notes.filter(note => note.id == id)[0]
+}
+
 const toggleArchive = (id) => {
   const tempNotes = notes.map((note) => {
     if(note.id == id){
@@ -124,7 +138,7 @@ const getUnarchiveNotes = () => {
 }
 
 const getNotesByCategory = (category) => {
-  return notes.filter((note) => note.label.includes(category))
+  return getUnarchiveNotes().filter((note) => note.label.includes(category))
 }
 
 const getAllCategories = () => {
@@ -159,12 +173,13 @@ const toggleFavorite = (id) => {
 }
 
 const getFavoriteNotes = () => {
-  return notes.filter((note) => note.favorite)
+  return getUnarchiveNotes().filter((note) => note.favorite)
 }
 
 export {
   getAllNotes,
   addNote,
+  getNoteById,
   getNotesByCategory,
   getAllCategories,
   getColorMapping,
@@ -174,6 +189,7 @@ export {
   getFavoriteNotes,
   getGroupColor,
   deleteNote,
+  ediNote,
   toggleArchive,
   getArchiveNotes,
   getUnarchiveNotes

@@ -1,9 +1,10 @@
 import { Lovely } from 'iconsax-react-native'
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Pressable } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import { showFormattedDate } from '../utils/formatDate'
-import { toggleArchive, toggleFavorite, deleteNote } from '../utils/data'
+import { toggleArchive, toggleFavorite, deleteNote, getNoteById } from '../utils/data'
 import ModalOnLongPressNote from './ModalOnLongPressNote'
 
 export default function Note({ id, title, body, createdAt, label, color, favorite, archive, updateListNotes }) {
@@ -13,8 +14,9 @@ export default function Note({ id, title, body, createdAt, label, color, favorit
   // console.log(title, favState)
   const [modalVisible, setModalVisible] = useState(false)
   const [noteVisible, setNoteVisible] = useState(true)
+  const navigation = useNavigation()
 
-  const onPressHandler = () => {
+  const onFavPressHandler = () => {
     toggleFavorite(id)
     setFavState(!favState)
     if (updateListNotes) updateListNotes()
@@ -32,6 +34,19 @@ export default function Note({ id, title, body, createdAt, label, color, favorit
     setNoteVisible(false)
   }
 
+  const onLongPressHandler = () => {
+    setModalVisible(true)
+  }
+
+  const onNotePressHandler = () => {
+    navigation.navigate('Add', {
+      id,
+      title,
+      body: getNoteById(id).body,
+      label
+    })
+  }
+
   if (noteVisible)
     return (
       <>
@@ -45,9 +60,10 @@ export default function Note({ id, title, body, createdAt, label, color, favorit
               borderWidth: 1
             }
           ]}
-          onLongPress={() => setModalVisible(true)}
+          onLongPress={onLongPressHandler}
+          onPress={onNotePressHandler}
         >
-          <TouchableOpacity style={styles.favIcon} onPress={onPressHandler}>
+          <TouchableOpacity style={styles.favIcon} onPress={onFavPressHandler}>
             <Lovely size="20" color={favState ? '#F47373' : 'black'} variant={favState ? 'Bold' : 'TwoTone'} />
           </TouchableOpacity>
           <Text style={styles.title}>{title}</Text>

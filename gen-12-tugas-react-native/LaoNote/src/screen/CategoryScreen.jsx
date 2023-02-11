@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, View, Text, StyleSheet } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, TouchableHighlight } from 'react-native'
 import Category from '../components/Category'
 import { useIsFocused } from '@react-navigation/native'
 
@@ -12,6 +12,7 @@ export default function CategoryScreen() {
   useEffect(() => {
     setCategories(getAllCategories())
   }, [isFocused])
+
   return (
     <>
       <ScrollView style={styles.container}>
