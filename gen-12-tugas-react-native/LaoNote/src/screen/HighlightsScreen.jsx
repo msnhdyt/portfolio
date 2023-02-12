@@ -1,93 +1,25 @@
-// import React from 'react'
-// import { View, Text } from 'react-native'
+import React from 'react'
+import { ScrollView, Text, StyleSheet } from 'react-native'
 
-// export default function HighlightsScreen() {
-//   return (
-//     <>
-//       <View>
-//         <Text>HiglightsScreen</Text>
-//       </View>
-//     </>
-//   )
-// }
+import EmptyList from '../components/EmptyList'
 
-import React, { useState } from 'react'
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from 'react-native'
-
-const App = () => {
-  const [modalVisible, setModalVisible] = useState(false)
+export default function HighlightScreen() {
   return (
     <>
-      <View style={styles.centeredView}>
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.')
-            setModalVisible(!modalVisible)
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>Hello World!</Text>
-              <Pressable style={[styles.button, styles.buttonClose]} onPress={() => setModalVisible(!modalVisible)}>
-                <Text style={styles.textStyle}>Hide Modal</Text>
-              </Pressable>
-            </View>
-          </View>
-        </Modal>
-      </View>
-      <Pressable style={[styles.button, styles.buttonOpen]} onLongPress={() => setModalVisible(true)}>
-        <Text style={styles.textStyle}>Show Modal</Text>
-      </Pressable>
+      <ScrollView style={styles.container}>
+        <Text style={styles.title}>Highlight Notes</Text>
+        <EmptyList empty={true} />
+      </ScrollView>
     </>
   )
 }
 
 const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-    backgroundColor: 'white'
-  },
-  modalView: {
-    margin: 20,
+  container: {
     backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
+    paddingHorizontal: 15
   },
-  // button: {
-  //   borderRadius: 20,
-  //   padding: 10,
-  //   elevation: 2
-  // },
-  // buttonOpen: {
-  //   backgroundColor: '#F194FF'
-  // },
-  buttonClose: {
-    backgroundColor: '#2196F3'
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center'
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center'
+  title: {
+    marginVertical: 15
   }
 })
-
-export default App

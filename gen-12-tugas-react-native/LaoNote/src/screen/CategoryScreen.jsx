@@ -3,14 +3,18 @@ import { ScrollView, View, Text, StyleSheet, TouchableHighlight } from 'react-na
 import Category from '../components/Category'
 import { useIsFocused } from '@react-navigation/native'
 
-import { getAllCategories } from '../utils/data'
+// import { getAllCategories } from '../utils/data'
+import { getCategoriesFromStorage } from '../utils/localStorage'
 
 export default function CategoryScreen() {
-  const [categories, setCategories] = useState(() => getAllCategories())
+  const [categories, setCategories] = useState([])
   const isFocused = useIsFocused()
 
   useEffect(() => {
-    setCategories(getAllCategories())
+    ;(async function () {
+      const cat = await getCategoriesFromStorage()
+      setCategories(cat)
+    })()
   }, [isFocused])
 
   return (

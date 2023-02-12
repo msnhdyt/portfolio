@@ -4,7 +4,8 @@ import { View, Text, StyleSheet, TouchableOpacity, Pressable } from 'react-nativ
 import { useNavigation } from '@react-navigation/native'
 
 import { showFormattedDate } from '../utils/formatDate'
-import { toggleArchive, toggleFavorite, deleteNote, getNoteById } from '../utils/data'
+// import { toggleArchive, toggleFavorite, deleteNote, getNoteById } from '../utils/data'
+import { toggleArchiveFromStorage, toggleFavoriteFromStorage, deleteNoteFromStorage, getNoteFromStorage } from '../utils/localStorage'
 import ModalOnLongPressNote from './ModalOnLongPressNote'
 
 export default function Note({ id, title, body, createdAt, label, color, favorite, archive, updateListNotes }) {
@@ -16,20 +17,20 @@ export default function Note({ id, title, body, createdAt, label, color, favorit
   const [noteVisible, setNoteVisible] = useState(true)
   const navigation = useNavigation()
 
-  const onFavPressHandler = () => {
-    toggleFavorite(id)
+  const onFavPressHandler = async () => {
+    await toggleFavoriteFromStorage(id)
     // setFavState(!favState)
     if (updateListNotes) updateListNotes()
   }
 
   const onDeleteHandler = () => {
-    deleteNote(id)
+    deleteNoteFromStorage(id)
     setModalVisible(false)
     setNoteVisible(false)
   }
 
   const onArchiveHandler = () => {
-    toggleArchive(id)
+    toggleArchiveFromStorage(id)
     setModalVisible(false)
     setNoteVisible(false)
   }
@@ -38,11 +39,13 @@ export default function Note({ id, title, body, createdAt, label, color, favorit
     setModalVisible(true)
   }
 
-  const onNotePressHandler = () => {
+  const onNotePressHandler = async () => {
+    const noteById = await getNoteFromStorage(id)
+
     navigation.navigate('Add', {
       id,
       title,
-      body: getNoteById(id).body,
+      body: noteById.body,
       label
     })
   }

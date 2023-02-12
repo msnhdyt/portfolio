@@ -2,27 +2,32 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-import { getNotesByCategory } from '../utils/data'
+// import { getNotesByCategory } from '../utils/data'
+import { getNotesByCategoryFromStorage } from '../utils/localStorage'
 import Note from '../components/Note'
+import EmptyList from '../components/EmptyList'
 
 export default function NotesByCategoryScreen({ route }) {
   const navigation = useNavigation()
   const { category } = route.params
-  const [notes, setNotes] = useState(getNotesByCategory(category))
+  const [notes, setNotes] = useState([])
 
   useEffect(() => {
-    navigation.setOptions({
-      title: category + ' Notes'
-    })
+    ;(async function () {
+      navigation.setOptions({
+        title: category + ' Notes'
+      })
+      const temp = await getNotesByCategoryFromStorage(route.params.category)
+      setNotes(temp)
+    })()
   }, [])
   return (
     <>
       <ScrollView style={styles.container}>
-        {/* <Text style={styles.title}>List Notes</Text> */}
         {notes.map((note, index) => {
-          // console.log(note.title, note.favorite)
           return <Note key={note.id} {...note} body="" />
         })}
+        <EmptyList empty={notes.length === 0} />
       </ScrollView>
     </>
   )

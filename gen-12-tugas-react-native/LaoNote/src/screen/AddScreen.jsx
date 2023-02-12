@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, ScrollView, StyleSheet, TextInput } from 'react-native'
 import { SaveButton } from '../components/AddHeader'
+import { useIsFocused } from '@react-navigation/native'
 
 import useInput from '../hooks/useInput'
-import { addNote, getAllCategories } from '../utils/data'
-import { ediNote } from '../utils/data'
+// import { addNote, getAllCategories } from '../utils/data'
+import { addNoteToStorage, editNoteFromStorage, getCategoriesFromStorage } from '../utils/localStorage'
+// import { ediNote } from '../utils/data'
+import { Add } from 'iconsax-react-native'
 
 export default function AddScreen({ route, navigation }) {
   let editNote = {
@@ -23,18 +26,26 @@ export default function AddScreen({ route, navigation }) {
     body: editNote.body || ''
   })
 
+  const [categoriesStorage, setCategoriesStorage] = useState([])
+
   const [cat, setCat] = useState({})
+  const isFocused = useIsFocused()
+
   useEffect(() => {
-    const tempCat = {}
-    getAllCategories().forEach((cat) => (tempCat[cat] = editNote.label.includes(cat)))
-    setCat({ ...tempCat })
-  }, [])
+    ;(async function () {
+      const tempCat = {}
+      const temp = await getCategoriesFromStorage()
+      setCategoriesStorage(temp)
+      temp.forEach((cat) => (tempCat[cat] = editNote.label.includes(cat)))
+      setCat({ ...tempCat })
+    })()
+  }, [isFocused])
 
   const handleCat = (category) => () => {
     setCat({ ...cat, [category]: !cat[category] })
   }
 
-  const onSaveHandler = () => {
+  const onSaveHandler = async () => {
     const label = Object.keys(cat).filter((key) => cat[key])
     const tempNote = {
       title: input.title,
@@ -42,9 +53,9 @@ export default function AddScreen({ route, navigation }) {
       label
     }
     if (route.params) {
-      ediNote(editNote.id, tempNote)
+      await editNoteFromStorage(editNote.id, tempNote)
     } else {
-      addNote(tempNote)
+      await addNoteToStorage(tempNote)
     }
     navigation.navigate('Home')
   }
@@ -53,23 +64,22 @@ export default function AddScreen({ route, navigation }) {
     navigation.setOptions({
       headerRight: () => <SaveButton navigation={navigation} onPress={onSaveHandler} />
     })
-    // console.log('dari us', input)
   }, [navigation, input, cat])
 
   return (
     <>
       <ScrollView style={styles.container}>
         <TextInput placeholder="write your title here ..." onChangeText={(newText) => handleInput('title', newText)} value={input.title} maxLength={50} />
-        {/* <Text>{input.title}</Text> */}
         <ScrollView style={styles.label} horizontal={true} showsHorizontalScrollIndicator={false}>
-          {getAllCategories().map((category, index) => {
+          {categoriesStorage.map((category, index) => {
             return (
-              <Text key={index} onPress={handleCat(category)} style={{ color: cat[category] ? 'black' : 'grey' }}>
-                {category} {index !== getAllCategories().length - 1 && ' | '}{' '}
+              <Text key={index} onPress={handleCat(category)} style={{ color: cat[category] ? 'black' : 'grey', fontWeight: cat[category] ? 'bold' : '100' }}>
+                {category} {index !== categoriesStorage.length - 1 && ' | '}{' '}
               </Text>
             )
           })}
-          {/* {console.log(cat)} */}
+          <Add size="28" color="black" variant="Outline" onPress={() => navigation.navigate('AddCategory')} />
+          {categoriesStorage.length === 0 && <Text>Add category first!</Text>}
         </ScrollView>
         <TextInput multiline placeholder="you can write anything here ..." onChangeText={(newText) => handleInput('body', newText)} value={input.body} />
       </ScrollView>

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, TextInput, ScrollView, Pressable } from 'react-native'
 import { TickCircle } from 'iconsax-react-native'
 
-import { getAllColors, addCategory } from '../utils/data'
+import { getAllColors } from '../utils/data'
+import { addCategoryToStorage } from '../utils/localStorage'
 
 export default function AddCategoryScreen({ navigation }) {
   const [newCat, setNewCat] = useState('')
@@ -18,9 +19,10 @@ export default function AddCategoryScreen({ navigation }) {
     setColorState(color)
   }
 
-  const onSaveHandler = () => {
-    addCategory({ category: newCat, color: colorState })
-    navigation.navigate('Category')
+  const onSaveHandler = async () => {
+    await addCategoryToStorage(newCat, colorState)
+    // navigation.navigate('Category')
+    navigation.goBack()
   }
 
   return (
