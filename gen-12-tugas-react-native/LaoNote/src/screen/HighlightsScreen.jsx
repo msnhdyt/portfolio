@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 22,
-    backgroundColor: 'red'
+    backgroundColor: 'white'
   },
   modalView: {
     margin: 20,
@@ -68,14 +68,14 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5
   },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF'
-  },
+  // button: {
+  //   borderRadius: 20,
+  //   padding: 10,
+  //   elevation: 2
+  // },
+  // buttonOpen: {
+  //   backgroundColor: '#F194FF'
+  // },
   buttonClose: {
     backgroundColor: '#2196F3'
   },

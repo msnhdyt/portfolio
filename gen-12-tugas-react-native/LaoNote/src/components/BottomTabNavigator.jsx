@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import HomeScreen from '../screen/HomeScreen'
@@ -10,6 +10,7 @@ import { Home2, ArchiveBook, Category2, Setting2 } from 'iconsax-react-native'
 import CategoryScreen from '../screen/CategoryScreen'
 import { AddCircle } from 'iconsax-react-native'
 import ArchiveScreen from '../screen/ArchiveScreen'
+import SettingScreen from '../screen/SettingScreen'
 
 const BottomTab = createBottomTabNavigator()
 
@@ -74,7 +75,20 @@ export default function BottomTabNavigator() {
             }
           }}
         />
-        <BottomTab.Screen name="Setting" component={Dummy} />
+        <BottomTab.Screen
+          name="Setting"
+          component={SettingScreen}
+          options={({ navigation }) => {
+            return {
+              headerTitle: 'Settings',
+              headerTitleAlign: 'center',
+              headerShadowVisible: false,
+              headerStyle: {
+                height: 90
+              }
+            }
+          }}
+        />
       </BottomTab.Navigator>
     </>
   )

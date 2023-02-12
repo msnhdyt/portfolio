@@ -10,9 +10,12 @@ export default function ArchiveScreen() {
   const isFocused = useIsFocused()
 
   useEffect(() => {
-    const tempNotes = [...getArchiveNotes()]
-    setNotes(tempNotes)
+    updateListNotes()
   }, [isFocused])
+
+  const updateListNotes = () => {
+    setNotes(getArchiveNotes())
+  }
 
   return (
     <>
@@ -20,7 +23,7 @@ export default function ArchiveScreen() {
         <Text style={styles.title}>Archive Notes</Text>
         {notes.map((note, index) => {
           // console.log(note.title, note.favorite)
-          return <Note key={note.id} {...note} body="" />
+          return <Note key={note.id} {...note} body="" updateListNotes={updateListNotes} />
         })}
       </ScrollView>
     </>
@@ -30,7 +33,7 @@ export default function ArchiveScreen() {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 15,
-    marginBottom: 30,
+    paddingBottom: 30,
     backgroundColor: 'white',
     borderTopColor: 'whitesmoke',
     borderTopWidth: 1

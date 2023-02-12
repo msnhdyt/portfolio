@@ -1,13 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 import { getFavoriteNotes } from '../utils/data'
 import Note from '../components/Note'
+import { useIsFocused } from '@react-navigation/native'
 
 export default function FavoriteNotesScreen() {
   const [notes, setNotes] = useState(getFavoriteNotes())
+  const isFocused = useIsFocused()
+
+  useEffect(() => {
+    setNotes(getFavoriteNotes())
+  }, [isFocused])
+
   const updateListNotes = () => {
-    setNotes(getFavoriteNotes)
+    setNotes(getFavoriteNotes())
   }
   return (
     <>
@@ -23,8 +30,9 @@ export default function FavoriteNotesScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    // paddingHorizontal: 15
-    marginBottom: 30
+    paddingBottom: 400,
+    backgroundColor: 'white',
+    paddingHorizontal: 15
   },
   title: {
     marginVertical: 15

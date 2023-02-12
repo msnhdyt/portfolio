@@ -13,7 +13,7 @@ const Stack = createNativeStackNavigator()
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ animation: 'none' }}>
+      <Stack.Navigator screenOptions={{ animation: 'none', contentStyle: { backgroundColor: 'white' } }}>
         <Stack.Screen name="BottomTabNavigator" component={BottomTabNavigator} options={{ headerShown: false }} />
         <Stack.Screen
           name="Add"

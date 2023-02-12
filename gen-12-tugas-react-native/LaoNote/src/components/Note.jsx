@@ -8,17 +8,17 @@ import { toggleArchive, toggleFavorite, deleteNote, getNoteById } from '../utils
 import ModalOnLongPressNote from './ModalOnLongPressNote'
 
 export default function Note({ id, title, body, createdAt, label, color, favorite, archive, updateListNotes }) {
-  // console.log(title, favorite)
-  const temp = favorite
-  const [favState, setFavState] = useState(temp)
-  // console.log(title, favState)
+  // console.log('1', title, favorite)
+  // const temp = favorite
+  // const [favState, setFavState] = useState(temp)
+  // console.log('2', title, favState)
   const [modalVisible, setModalVisible] = useState(false)
   const [noteVisible, setNoteVisible] = useState(true)
   const navigation = useNavigation()
 
   const onFavPressHandler = () => {
     toggleFavorite(id)
-    setFavState(!favState)
+    // setFavState(!favState)
     if (updateListNotes) updateListNotes()
   }
 
@@ -64,7 +64,7 @@ export default function Note({ id, title, body, createdAt, label, color, favorit
           onPress={onNotePressHandler}
         >
           <TouchableOpacity style={styles.favIcon} onPress={onFavPressHandler}>
-            <Lovely size="20" color={favState ? '#F47373' : 'black'} variant={favState ? 'Bold' : 'TwoTone'} />
+            <Lovely size="20" color={favorite ? '#F47373' : 'black'} variant={favorite ? 'Bold' : 'TwoTone'} />
           </TouchableOpacity>
           <Text style={styles.title}>{title}</Text>
           {body !== '' && <Text style={[styles.textBody, { marginBottom: 10 }]}>{body}</Text>}
@@ -85,7 +85,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 15,
     // marginHorizontal: 15,
-    padding: 10
+    padding: 10,
+    minHeight: 70
   },
   footer: {
     flex: 1,
