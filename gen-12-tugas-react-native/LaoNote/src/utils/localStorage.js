@@ -189,6 +189,16 @@ const addCategoryToStorage = async (category, color) => {
   }
 }
 
+const deleteCategoryFromStorage = async (category) => {
+  try {
+    const cats = await getCategoriesFromStorage()
+    const filteredCats = cats.filter((cat) => cat !== category)
+    AsyncStorage.setItem(CATEGORIES_KEY, JSON.stringify(filteredCats))
+  } catch (error) {
+    alert(error.message)
+  }
+}
+
 export {
   NOTES_KEY,
   getNotesFromStorage,
@@ -204,5 +214,6 @@ export {
   toggleArchiveFromStorage,
   toggleFavoriteFromStorage,
   addCategoryToStorage,
-  editNoteFromStorage
+  editNoteFromStorage,
+  deleteCategoryFromStorage
 }

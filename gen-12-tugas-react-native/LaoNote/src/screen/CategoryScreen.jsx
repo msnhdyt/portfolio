@@ -9,10 +9,12 @@ import { getCategoriesFromStorage } from '../utils/localStorage'
 export default function CategoryScreen() {
   const [categories, setCategories] = useState([])
   const isFocused = useIsFocused()
+  const [numberCat, setnumberCat] = useState(0)
 
   useEffect(() => {
     ;(async function () {
       const cat = await getCategoriesFromStorage()
+      setnumberCat(cat.length)
       setCategories(cat)
     })()
   }, [isFocused])
@@ -23,10 +25,10 @@ export default function CategoryScreen() {
         <Text>List Categories</Text>
         <View style={styles.categories}>
           {categories.map((category, index) => {
-            return <Category key={index} category={category} />
+            return <Category key={category} category={category} updateCount={setnumberCat} />
           })}
         </View>
-        <Text style={styles.numberCat}>You Have {categories.length} Categories</Text>
+        <Text style={styles.numberCat}>You Have {numberCat} Categories</Text>
       </ScrollView>
     </>
   )
