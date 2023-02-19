@@ -244,3 +244,13 @@ a {
 .not-found-image {
   max-width: 400px;
 }
+
+/* credentials */
+
+.credential-src {
+  font-size: small;
+}
+
+.credential-link {
+  text-decoration: underline;
+}

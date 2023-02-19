@@ -39,6 +39,12 @@ function LoginPage() {
             <input type="password" value={form.password} onChange={(evt) => handleInput('password', evt.target.value)} />
           </label>
           <button className="login-form__submit__button">Login</button>
+          <p className="credential-src">
+            You can use any user's credentials from{' '}
+            <a className="credential-link" href="https://dummyjson.com/users" target="_blank">
+              here
+            </a>
+          </p>
         </form>
       </section>
     </>
