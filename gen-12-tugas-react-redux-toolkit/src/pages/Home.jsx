@@ -3,7 +3,7 @@ import { getAllNotes, deleteNote, getNote } from '../utils/api-request'
 import Note from '../components/Note'
 import Loading from '../components/Loading'
 import { useNavigate } from 'react-router-dom'
-import { IoIosAddCircle } from 'react-icons/all'
+import { IoIosAddCircle } from 'react-icons/io'
 import { UserContext } from '../contexts/NotesProvider'
 import { LangContext } from '../contexts/LangProvider'
 
